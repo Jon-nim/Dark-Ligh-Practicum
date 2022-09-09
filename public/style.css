@@ -5,11 +5,35 @@ UVU PRIMARY: #275d38
 UVU SECONDARY: #1A4127
 UVU FONT: Rajdhani
 */
+@font-face {
+  font-family: Rajdhani;
+  src: url(Rajdhani-Regular.ttf);
+}
+
 #uvuId {
-  flex: right;
   display: none;
 }
 
 .logCommentSelector {
   display: block;
+}
+
+body {
+  font-family: Rajdhani;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #275d38;
+  color: #1a4127;
+}
+
+#course {
+  display: block;
+}
+
+.fancyForm {
+  margin: 20px;
+  padding: 30px;
+  background-color: white;
+  color: #1a4127;
 }

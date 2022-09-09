@@ -10,22 +10,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form>
-      <select
-        aria-label="Select Course"
-        id="course"
-        name="course"
-        data-cy="course_select"
-      ></select
-      ><br />
-      <label for="uvuId">UVU ID</label><br />
-      <input
-        type="text"
-        id="uvuId"
-        name="uvuId"
-        data-cy="uvuId_input"
-        maxlength="8"
-      />
+    <img src="../pics/uvu-mono.svg" width="30" />
+    <form class="fancyForm">
+      <div class="courseDiv">
+        <label for="course">Course</label>
+        <select
+          aria-label="Select Course"
+          id="course"
+          name="course"
+          data-cy="course_select"
+        ></select
+        ><br />
+      </div>
+      <div class="uvuDiv">
+        <label for="uvuId">UVU ID</label><br />
+        <input
+          type="text"
+          id="uvuId"
+          name="uvuId"
+          data-cy="uvuId_input"
+          maxlength="8"
+        />
+      </div>
 
       <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay">
         Student Logs for 10234567
