@@ -1,5 +1,9 @@
 /* TODO: make it look awesome. */
 /* TODO: make it responsive. */
+@font-face {
+  font-family: Rajdhani;
+  src: url(Rajdhani-Regular.ttf);
+}
 
 #uvuId {
   display: none;
@@ -7,4 +11,8 @@
 
 .logCommentSelector {
   display: block;
+}
+
+body {
+  font-family: Rajdhani;
 }
