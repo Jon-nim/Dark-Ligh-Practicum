@@ -1,7 +1,12 @@
 /* TODO: make it look awesome. */
 /* TODO: make it responsive. */
-
+/*
+UVU PRIMARY: #275d38
+UVU SECONDARY: #1A4127
+UVU FONT: Rajdhani
+*/
 #uvuId {
+  flex: right;
   display: none;
 }
 
