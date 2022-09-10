@@ -1,6 +1,8 @@
 const lightmode = ['#275d38', '#1a4127', '#ffffff'];
 const darkmode = ['#0e2717', '#ffffff87', '#212121'];
 let toggle = true;
+let usermodepref;
+let systemmodepref = 'unknown';
 
 //there wasn't a dsitinguish between a darkmode preference for windows and browser
 
@@ -11,17 +13,31 @@ $(document).ready(() => {
   $(document).on('keyup', '#uvuId', cleantext);
   $(document).on('keyup', '#uvuId', fetchUVUData);
   $(document).on('click', '#lightbulb', toggleDarkmode);
-  let darkmodepref = getCookie('darkmodepref');
-  console.log(darkmodepref);
-  if (darkmodepref == 'Yes') {
+  let usermodepref = getCookie('darkmodepref');
+  if (!usermodepref) usermodepref = 'unknown';
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  )
+    systemmodepref = 'dark';
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: light)').matches
+  )
+    systemmodepref = 'light';
+  if (usermodepref == 'Yes') {
+    toggleDarkmode();
+    usermodepref = 'dark';
+  } else if (usermodepref == 'No') {
+    usermodepref = 'light';
+  } else if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
     toggleDarkmode();
   }
-  // } else if (
-  //   window.matchMedia &&
-  //   window.matchMedia('(prefers-color-scheme: dark)').matches
-  // ) {
-  //   toggleDarkmode();
-  // }
+  console.log(`User Pref: ${usermodepref}`);
+  console.log(`OS Pref: ${systemmodepref}`);
 });
 
 function toggleDarkmode() {
