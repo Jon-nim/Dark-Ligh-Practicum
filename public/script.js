@@ -2,6 +2,8 @@ const lightmode = ['#275d38', '#1a4127', '#ffffff'];
 const darkmode = ['#0e2717', '#ffffff87', '#212121'];
 let toggle = true;
 
+//there wasn't a dsitinguish between a darkmode preference for windows and browser
+
 $(document).ready(() => {
   $('button[data-cy="add_log_btn"]').prop('disabled', true);
   fetchCourseData();
@@ -9,6 +11,17 @@ $(document).ready(() => {
   $(document).on('keyup', '#uvuId', cleantext);
   $(document).on('keyup', '#uvuId', fetchUVUData);
   $(document).on('click', '#lightbulb', toggleDarkmode);
+  let darkmodepref = getCookie('darkmodepref');
+  console.log(darkmodepref);
+  if (darkmodepref == 'Yes') {
+    toggleDarkmode();
+  }
+  // } else if (
+  //   window.matchMedia &&
+  //   window.matchMedia('(prefers-color-scheme: dark)').matches
+  // ) {
+  //   toggleDarkmode();
+  // }
 });
 
 function toggleDarkmode() {
@@ -18,12 +31,14 @@ function toggleDarkmode() {
     $('.fancyForm').css('backgroundColor', darkmode[2]);
     $('#toprow').css('backgroundColor', darkmode[2]);
     toggle = false;
+    document.cookie = 'darkmodepref=Yes';
   } else {
     $('body').css('backgroundColor', lightmode[0]);
     $('.fancyForm').css('color', lightmode[1]);
     $('.fancyForm').css('backgroundColor', lightmode[2]);
     $('#toprow').css('backgroundColor', lightmode[2]);
     toggle = true;
+    document.cookie = 'darkmodepref=No';
   }
 }
 
@@ -109,4 +124,20 @@ function fetchUVUData(event) {
       })
       .catch((err) => console.log(err));
   }
+}
+
+function getCookie(cname) {
+  let name = cname + '=';
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
 }
