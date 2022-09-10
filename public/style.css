@@ -7,10 +7,13 @@ UVU FONT: Rajdhani
 */
 @font-face {
   font-family: Rajdhani;
-  src: url('https://fonts.googleapis.com/css?family=Tangerine');
+  src: url(Rajdhani-Regular.ttf);
 }
 
 #uvuId {
+  display: none;
+}
+#labelId {
   display: none;
 }
 
@@ -22,6 +25,7 @@ body {
   font-family: Rajdhani;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.5s ease;
   background-color: #275d38;
   color: #1a4127;
   margin: 0px;
@@ -38,6 +42,7 @@ html {
 .fancyForm {
   margin: 20px;
   padding: 30px;
+  transition: background-color 0.5s ease;
   background-color: #ffffff;
   color: #1a4127;
 }
@@ -50,6 +55,7 @@ html {
 }
 
 #toprow {
+  transition: background-color 0.5s ease;
   background-color: white;
   padding: 20px;
   margin: 0px;

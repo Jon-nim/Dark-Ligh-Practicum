@@ -1,5 +1,6 @@
 const lightmode = ['#275d38', '#1a4127', '#ffffff'];
-const darkmode = ['#1a4127', '#0d2014', '#212121'];
+const darkmode = ['#0e2717', '#ffffff87', '#212121'];
+let toggle = true;
 
 $(document).ready(() => {
   $('button[data-cy="add_log_btn"]').prop('disabled', true);
@@ -11,16 +12,29 @@ $(document).ready(() => {
 });
 
 function toggleDarkmode() {
-  $('body').css('backgroundColor', darkmode[0]);
-  document.getElementsByTagName('body');
+  if (toggle) {
+    $('body').css('backgroundColor', darkmode[0]);
+    $('.fancyForm').css('color', darkmode[1]);
+    $('.fancyForm').css('backgroundColor', darkmode[2]);
+    $('#toprow').css('backgroundColor', darkmode[2]);
+    toggle = false;
+  } else {
+    $('body').css('backgroundColor', lightmode[0]);
+    $('.fancyForm').css('color', lightmode[1]);
+    $('.fancyForm').css('backgroundColor', lightmode[2]);
+    $('#toprow').css('backgroundColor', lightmode[2]);
+    toggle = true;
+  }
 }
 
 //unhides when a course is selected
 function unhide(event) {
   if ($('#course').val() == '') {
     $('#uvuId').css('display', 'none');
+    $('#labelId').css('display', 'none');
   } else {
     $('#uvuId').css('display', 'block');
+    $('#labelId').css('display', 'block');
   }
 }
 
