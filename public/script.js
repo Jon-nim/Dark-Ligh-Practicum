@@ -1,10 +1,19 @@
+const lightmode = ['#275d38', '#1a4127', '#ffffff'];
+const darkmode = ['#1a4127', '#0d2014', '#212121'];
+
 $(document).ready(() => {
   $('button[data-cy="add_log_btn"]').prop('disabled', true);
   fetchCourseData();
   $(document).on('change', '#course', unhide);
   $(document).on('keyup', '#uvuId', cleantext);
   $(document).on('keyup', '#uvuId', fetchUVUData);
+  $(document).on('click', '#lightbulb', toggleDarkmode);
 });
+
+function toggleDarkmode() {
+  $('body').css('backgroundColor', darkmode[0]);
+  document.getElementsByTagName('body');
+}
 
 //unhides when a course is selected
 function unhide(event) {

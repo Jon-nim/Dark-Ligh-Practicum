@@ -7,7 +7,7 @@ UVU FONT: Rajdhani
 */
 @font-face {
   font-family: Rajdhani;
-  src: url(Rajdhani-Regular.ttf);
+  src: url('https://fonts.googleapis.com/css?family=Tangerine');
 }
 
 #uvuId {
@@ -24,8 +24,13 @@ body {
   justify-content: center;
   background-color: #275d38;
   color: #1a4127;
+  margin: 0px;
 }
 
+html {
+  margin: 0px;
+  padding: 0px;
+}
 #course {
   display: block;
 }
@@ -33,12 +38,25 @@ body {
 .fancyForm {
   margin: 20px;
   padding: 30px;
-  background-color: white;
+  background-color: #ffffff;
   color: #1a4127;
 }
 
 #logo {
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
+}
+
+#toprow {
+  background-color: white;
+  padding: 20px;
+  margin: 0px;
+}
+
+#lightbulb {
+  display: inline-block;
+  margin-left: 30px;
+  width: 30px;
 }
