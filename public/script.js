@@ -1,5 +1,5 @@
 const lightmode = ['#275d38', '#1a4127', '#ffffff'];
-const darkmode = ['#0e2717', '#ffffff87', '#212121'];
+const darkmode = ['#0e2717', '#ffffff87', '#2e2e2e'];
 let toggle = true;
 let usermodepref;
 let systemmodepref = 'unknown';
@@ -13,6 +13,7 @@ $(document).ready(() => {
   $(document).on('keyup', '#uvuId', cleantext);
   $(document).on('keyup', '#uvuId', fetchUVUData);
   $(document).on('click', '#lightbulb', toggleDarkmode);
+  $(document).on('submit', 'submit', postUVUdata);
   let usermodepref = getCookie('darkmodepref');
   if (!usermodepref) usermodepref = 'unknown';
   if (
@@ -140,6 +141,37 @@ function fetchUVUData(event) {
       })
       .catch((err) => console.log(err));
   }
+}
+
+function postUVUdata(event) {
+  event.preventDefault();
+  const uvuId = $('#uvuId').val();
+  const corseId = $('#course').val();
+  const postlogs = $('textarea').val();
+  const date = new Date();
+  const id = createUUID();
+  const params = {
+    courseId: courseId,
+    uvuId: uvuID,
+    date: date,
+    text: postlogs,
+    id: id,
+  };
+
+  let url = `https://json-server-gupuqp--3000.local.webcontainer.io/api/v1/logs`;
+  axios.post(url, params).then(function (response) {
+    $('textarea').setValue('');
+    console.log(response);
+    getLogs();
+  });
+}
+
+function createUUID() {
+  return 'xxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }
 
 function getCookie(cname) {
