@@ -20,7 +20,7 @@
         width="20px"
       />
     </div>
-    <form class="fancyForm">
+    <form class="fancyForm" id="form">
       <div class="courseDiv">
         <label for="course" id>Course</label>
         <select
@@ -48,13 +48,16 @@
       <ul data-cy="logs"></ul>
       <label>New Log</label><br />
       <textarea
+        id="textareaLog"
         style="height: 75px"
         aria-label="add log textarea"
         data-cy="log_textarea"
       ></textarea
       ><br />
 
-      <button type="submit" data-cy="add_log_btn">Add Log</button>
+      <button id="submitLogs" type="submit" data-cy="add_log_btn">
+        Add Log
+      </button>
     </form>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="JQL.js"></script>

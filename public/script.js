@@ -13,7 +13,7 @@ $(document).ready(() => {
   $(document).on('keyup', '#uvuId', cleantext);
   $(document).on('keyup', '#uvuId', fetchUVUData);
   $(document).on('click', '#lightbulb', toggleDarkmode);
-  $(document).on('submit', 'submit', postUVUdata);
+  $(document).on('submit', '#form', postUVUdata);
   let usermodepref = getCookie('darkmodepref');
   if (!usermodepref) usermodepref = 'unknown';
   if (
@@ -146,23 +146,24 @@ function fetchUVUData(event) {
 function postUVUdata(event) {
   event.preventDefault();
   const uvuId = $('#uvuId').val();
-  const corseId = $('#course').val();
-  const postlogs = $('textarea').val();
-  const date = new Date();
+  const courseId = $('#course').val();
+  const postlogs = $('#textareaLog').val();
+  let date = new Date();
+  date = date.toLocaleString();
   const id = createUUID();
-  const params = {
+  let params = {
     courseId: courseId,
-    uvuId: uvuID,
+    uvuId: uvuId,
     date: date,
     text: postlogs,
     id: id,
   };
 
-  let url = `https://json-server-gupuqp--3000.local.webcontainer.io/api/v1/logs`;
+  let url = `https://json-server-trdgtp--3000.local.webcontainer.io/api/v1/logs`;
   axios.post(url, params).then(function (response) {
-    $('textarea').setValue('');
     console.log(response);
-    getLogs();
+    $('#textareaLog').val('fudge');
+    fetchUVUData();
   });
 }
 
