@@ -62,7 +62,7 @@ class ElementCollection extends Array {
   }
 
   val(newValue) {
-    if (newValue) {
+    if (newValue || newValue === '') {
       this[0].value = newValue;
     } else {
       return this[0].value;

@@ -14,6 +14,11 @@ $(document).ready(() => {
   $(document).on('keyup', '#uvuId', fetchUVUData);
   $(document).on('click', '#lightbulb', toggleDarkmode);
   $(document).on('submit', '#form', postUVUdata);
+  $(document).on('keyup', '#textareaLog', () => {
+    if ($('#textareaLog').val().length > 0)
+      $('button[data-cy="add_log_btn"]').prop('disabled', false);
+    else $('button[data-cy="add_log_btn"]').prop('disabled', true);
+  });
   let usermodepref = getCookie('darkmodepref');
   if (!usermodepref) usermodepref = 'unknown';
   if (
@@ -137,7 +142,6 @@ function fetchUVUData(event) {
               </li>`;
         }
         studentLogs.innerHTML = html;
-        $('button[data-cy="add_log_btn"]').prop('disabled', false);
       })
       .catch((err) => console.log(err));
   }
@@ -162,8 +166,9 @@ function postUVUdata(event) {
   let url = `https://json-server-trdgtp--3000.local.webcontainer.io/api/v1/logs`;
   axios.post(url, params).then(function (response) {
     console.log(response);
-    $('#textareaLog').val('fudge');
+    $('#textareaLog').val('');
     fetchUVUData();
+    $('button[data-cy="add_log_btn"]').prop('disabled', true);
   });
 }
 
